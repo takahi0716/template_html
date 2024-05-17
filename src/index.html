@@ -2,39 +2,99 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no" />
-  <meta name="robots" content="noindex" />
-  <title></title>
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
-  <meta property="og:title" content="" />
-  <meta property="og:type" content="" />
-  <meta property="og:url" content="" />
-  <meta property="og:image" content="" />
-  <meta property="og:site_name" content="" />
-  <meta property="og:description" content="" />
-  <link rel="”icon”" href="" />
+  <title>タイトル</title>
+  <meta name="description" content="トップページの説明" />
+  <meta name="keywords" content="キーワード" />
+  <!-- noindex（公開時に削除） -->
+  <meta name="robots" content="noindex,nofollow">
+  <!-- OGP -->
+  <meta property="og:title" content="サイト名" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="サイトのドメイン" />
+  <meta property="og:image" content="OGP IMAGE" />
+  <meta property="og:site_name" content="サイトのドメイン" />
+  <meta property="og:description" content="トップページの説明" />
+  <!-- ファビコン -->
+  <link rel="”icon”" href="">
   <!-- css -->
   <link rel="stylesheet" href="./assets/css/style.css" />
 
 </head>
 
 <body>
-  <header>
-
-  </header>
-  <main>
-    <div class="inner">
-      <p class="test">変更のテスト</p>
+  <!-- ヘッダー -->
+  <header class="header layout-header">
+    <div class="header__inner">
+      <h1 class="header__logo">
+        <a href="#">
+          <img src="./images/common/logo.svg" alt="LOGO">
+        </a>
+      </h1>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a href="#">top</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="#">about</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="#">works</a>
+          </li>
+          <li class="header__nav-item header__nav-item--contact">
+            <a href="#" target="_blank" rel="noopener">contact</a>
+          </li>
+        </ul>
+      </nav>
+      <button class="header__hamburger js-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="header__drawer js-drawer">
+        <nav class="header__drawer-nav">
+          <ul class="header__drawer-list">
+            <li class="header__drawer-item">
+              <a href="#">top</a>
+            </li>
+            <li class="header__drawer-item">
+              <a href="#">about</a>
+            </li>
+            <li class="header__drawer-item">
+              <a href="#">works</a>
+            </li>
+            <li class="header__drawer-item header__drawer-item--contact">
+              <a href="#" target="_blank" rel="noopener">contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-  </main>
-  <footer>
+  </header>
 
+  <!-- メイン -->
+  <main class="main">
+
+    <!-- トップページファーストビュー -->
+    <div class="top-fv"></div>
+
+    <!-- セクション -->
+    <section class="section"></section>
+
+    <!-- セクション -->
+    <section class="section"></section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <small class="footer__copy">&copy; ○○株式会社 All Rights Reserved.</small>
   </footer>
   <!-- JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
   <script defer src="./assets/js/script.js"></script>
 </body>
 
