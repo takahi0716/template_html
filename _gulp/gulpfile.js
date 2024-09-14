@@ -20,6 +20,8 @@ const del = require("del"); // ファイルやディレクトリを削除する�
 const webp = require('gulp-webp');//webp変換
 const rename = require('gulp-rename');//ファイル名変更
 
+
+// 静的コーディング
 // 読み込み先
 const srcPath = {
   css: "../src/sass/**/*.scss",
@@ -37,12 +39,45 @@ const destPath = {
   html: "../dist/",
 };
 
+// WordPressで必要
+// const projectName = "mv-hc";
+// const wpThemeName = "child";
+// const baseFolder =
+//   process.env.BASE_FOLDER ||
+//   `/Users/oshim/Local Sites/${projectName}/app/public/wp-content/themes/${wpThemeName}`;
+
+// // 読み込み先
+// const srcPath = {
+//   css: "../src/sass/**/*.scss",
+//   js: "../src/js/**/*",
+//   img: "../src/wp-theme/image/**/*",
+//   html: ["../src/**/*.html", "!./node_modules/**"],
+//   wp: "../src/wp-theme/**/*",
+// };
+
+// // html反映用
+// const destPath = {
+//   all: `${baseFolder}/**/*`,
+//   css: `${baseFolder}/`,
+//   js: `${baseFolder}/script/`,
+//   img: `${baseFolder}/image/`,
+//   html: `../dist/"`,
+//   wp: `${baseFolder}/`,
+// };
+
 const browsers = ["last 2 versions", "> 5%", "ie = 11", "not ie <= 10", "ios >= 8", "and_chr >= 5", "Android >= 5"];
 
+// 静的コーディング
 // HTMLファイルのコピー
 const htmlCopy = () => {
   return src(srcPath.html).pipe(dest(destPath.html));
 };
+
+// WordPress
+// WP-Themeのコピー
+// const wpThemeCopy = () => {
+//   return src(srcPath.wp).pipe(dest(destPath.wp));
+// };
 
 const cssSass = () => {
   // ソースファイルを指定
@@ -158,7 +193,9 @@ const jsBabel = () => {
   );
 };
 
+
 // ブラウザーシンク
+// 静的コーディング
 const browserSyncOption = {
   notify: false,
   server: "../dist/",
@@ -171,6 +208,14 @@ const browserSyncReload = (done) => {
   done();
 };
 
+// WordPress
+// const browserSyncOption = {
+//   proxy: "http://mv-hc.local/", // ローカルにある「Site Domain」に合わせる
+//   // baseDir: '../assets'//gulpfile.jsの格納場所からの相対パスを記述する必要あり
+//   notify: false, // ブラウザ更新時に出てくる通知を非表示にする
+//   // open: "external",// ローカルIPアドレスでサーバを立ち上げる
+// };
+
 // ファイルの削除
 const clean = () => {
   return del(destPath.all, { force: true });
@@ -180,11 +225,27 @@ const watchFiles = () => {
   watch(srcPath.css, series(cssSass, browserSyncReload));
   watch(srcPath.js, series(jsBabel, browserSyncReload));
   watch(srcPath.img, series(imgImagemin, browserSyncReload));
+
+  // 静的コーディング
   watch(srcPath.html, series(htmlCopy, browserSyncReload));
+
+// WordPress
+  // watch(srcPath.wp, series(wpThemeCopy, browserSyncReload));
 };
 
+// 静的コーディング
 // ブラウザシンク付きの開発用タスク
 exports.default = series(series(cssSass, jsBabel, imgImagemin, htmlCopy), parallel(watchFiles, browserSyncFunc));
 
 // 本番用タスク
 exports.build = series(clean, cssSass, jsBabel, imgImagemin, htmlCopy);
+
+// WordPress
+// ブラウザシンク付きの開発用タスク
+// exports.default = series(
+//   series(cssSass, jsBabel, imgImagemin, wpThemeCopy),
+//   parallel(watchFiles, browserSyncFunc)
+// );
+
+// // 本番用タスク
+// exports.build = series(clean, cssSass, jsBabel, imgImagemin, wpThemeCopy);
