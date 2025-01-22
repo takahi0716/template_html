@@ -34,8 +34,7 @@ html {
 /* Set core body defaults */
 body {
   min-height: 100vh;
-  text-rendering: optimizeLegibility;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
@@ -109,6 +108,10 @@ select {
 
 select::-ms-expand {
   display: none;
+}
+
+picture {
+  display: block;
 }
 
 /* ホバー */

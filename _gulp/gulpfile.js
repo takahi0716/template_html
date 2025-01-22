@@ -165,7 +165,7 @@ const imgImagemin = () => {
         )
       )
       .pipe(dest(destPath.img))
-      // .pipe(webp())//webpに変換
+      .pipe(webp())//webpに変換
       // 圧縮済みの画像ファイルを出力先に保存
       .pipe(dest(destPath.img))
   );
